@@ -2232,10 +2232,11 @@ table {
   background-color: transparent;
 }
 caption {
+  font-size: 22px;
   padding-top: 8px;
   padding-bottom: 8px;
   color: #777;
-  text-align: left;
+  text-align: center;
 }
 th {
   text-align: left;
@@ -2295,6 +2296,7 @@ th {
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
+  font-weight: bold;
   border-bottom-width: 2px;
 }
 .table-striped > tbody > tr:nth-of-type(odd) {
