@@ -10,40 +10,9 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree ./vendor
+ *= require_tree .
  *= require_self
  */
-
-.font_size_22 {
-  font-size: 22;
-}
-
-#container {
-  margin: 48px auto;
-  width: 960px;
-}
-
-#container > section {
-  clear: both;
-}
-
-#container > header {
-  margin-bottom: 46px;
-}
-
-#container > header > h1 {
-  float: left;
-  margin: 0;
-}
-
-.navigation-links {
-  float: right;
-}
-
-.navigation-links li {
-  display: inline-block;
-  margin: 0 16px;
-}
 
 /* MISC */
 

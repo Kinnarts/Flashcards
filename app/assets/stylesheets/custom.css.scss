@@ -1,0 +1,30 @@
+.font_size_22 {
+  font-size: 22px;
+}
+
+#container {
+  margin: 48px auto;
+  width: 960px;
+
+  section {
+    clear: both;
+  }
+  
+  header {
+    margin-bottom: 46px;
+
+    h1 {
+      float: left;
+      margin: 0;
+    }
+  }
+}
+
+.navigation-links {
+  float: right;
+
+  li {
+    display: inline-block;
+    margin: 0 16px;
+  }
+}
