@@ -6,8 +6,6 @@ class CardsController < ApplicationController
   end
 
   def show
-    @card.review_date = Time.now
-    @card.save
   end
 
   private
