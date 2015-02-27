@@ -5,5 +5,5 @@ class Card < ActiveRecord::Base
 
   def record_review_date
     self.review_date = Time.now
-  end    
+  end
 end
