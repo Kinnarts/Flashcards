@@ -1,12 +1,12 @@
 class Card < ActiveRecord::Base
-  before_create  :record_review_date
-  validates :original_text, :translated_text, presence: true
+  before_validation  :record_review_date
+  validates :original_text, :translated_text, :review_date, presence: true
   validate :original_text_cannot_be_equal_translated_text
 
   private
 
   def record_review_date
-    self.review_date = Time.now + (60 * 60 * 72)
+    self.review_date = Time.now + 3.days
   end
 
   def original_text_cannot_be_equal_translated_text
