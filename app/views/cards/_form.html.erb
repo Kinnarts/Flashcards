@@ -1,0 +1,6 @@
+<%= simple_form_for @card do |f| %>
+  <%= f.input :original_text, label: 'Оригинальный текст' %>
+  <%= f.input :translated_text, label: 'Перевод' %>
+  <%= f.input :review_date, label: 'Дата перепросмотра', default: Time.now + (60 * 60 * 72), order: [:day, :month, :year] %>  
+  <%= f.button :submit %>
+<% end %>

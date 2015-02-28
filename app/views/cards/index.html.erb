@@ -1,21 +1,28 @@
 <table class="table table-bordered">
   <caption>Список всех карточек</caption>
-    <thead>
+  <thead>
+    <tr>
+      <td>Номер карточки</td>
+      <td>Оригинальный текст</td>
+      <td>Посмотреть перевод</td>
+      <td>Дата перепросмотра карточки</td>
+      <td>Действия</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cards.each do |card| %>
       <tr>
-        <td>Номер карточки</td>
-        <td>Оригинальный текст</td>
-        <td>Посмотреть перевод</td>
-        <td>Дата последнего просмотра карточки</td>
+        <td><%= card.id %></td>
+        <td><%= card.original_text %></td>
+        <td><%= link_to 'Посмотреть перевод', card_path(card) %></td>
+        <td><%= card.review_date.strftime("%d/%m/%Y") %></td>
+        <td>
+          <%= link_to 'Редактировать', edit_card_path(card) %>
+          |
+          <%= link_to 'Удалить', card_path(card), method: :delete, data: { confirm: 'Вы уверены?' } %>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <% @cards.each do |card| %>
-        <tr>
-          <td><%= card.id %></td>
-          <td><%= card.original_text %></td>
-          <td><%= link_to 'Посмотреть перевод', card_path(card) %></td>
-          <td><%= card.review_date.strftime("%d/%m/%Y") %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <% end %>
+  </tbody>
+</table>
+<p><%= link_to 'Новая карточка', new_card_path, class: 'btn' %></p>
