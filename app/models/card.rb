@@ -1,13 +1,18 @@
 class Card < ActiveRecord::Base
-  before_validation  :record_review_date
-  validates :original_text, :translated_text, :review_date, presence: true
+  before_create  :increase_review_date
+  validates :original_text, :translated_text, presence: true
   validate :original_text_cannot_be_equal_translated_text
+  scope :all_for_review, -> { where("review_date <= ?", Time.now) }
 
-  private
-
-  def record_review_date
+  def increase_review_date
     self.review_date = Time.now + 3.days
   end
+
+  def check_translate(text)
+    self.translated_text == text
+  end
+
+  private
 
   def original_text_cannot_be_equal_translated_text
     if self.original_text.mb_chars.downcase.to_s == self.translated_text.mb_chars.downcase.to_s

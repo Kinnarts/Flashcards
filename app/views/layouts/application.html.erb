@@ -12,16 +12,19 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Флешкарточкер</a>
+          <%= link_to 'Флешкарточкер', root_path, class: "navbar-brand" %>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to 'Все карточки', cards_path %></li>
-            <li><a href="#">Добавить карточку</a></li>
+            <li><%= link_to 'Добавить карточку', new_card_path %></li>
           </ul>
         </div>
       </div>
     </nav>
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
     <div class="jumbotron">
       <%= yield %>
     </div>
