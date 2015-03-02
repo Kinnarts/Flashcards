@@ -1,3 +1,9 @@
-<p class="font-size-22">
-  Первый в мире удобный менеджер флеш-карточек. Именно так.
-</p>
+<h2>Карточка для повторения</h2>
+<p>Карточка №<%= @card.id %></p>
+<p>Оригинальный текст - <%= @card.original_text %></p>
+<%= form_tag check_path do %>
+  <%= label_tag(:q, "Введите перевод") %>
+  <%= text_field_tag :q %>
+  <%= hidden_field_tag :card_id, @card.id %></br>
+  <button>Проверить</button>
+<% end %>
