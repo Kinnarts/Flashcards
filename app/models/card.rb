@@ -9,7 +9,7 @@ class Card < ActiveRecord::Base
   end
 
   def check_translation(text)
-    if translated_text == text
+    if translated_text == downcase_cyrilic(text)
       update_attributes(review_date: Time.now + 3.days)
     end
   end
@@ -17,8 +17,12 @@ class Card < ActiveRecord::Base
   private
 
   def original_text_cannot_be_equal_translated_text
-    if self.original_text.mb_chars.downcase.to_s == self.translated_text.mb_chars.downcase.to_s
+    if downcase_cyrilic(original_text) == downcase_cyrilic(translated_text)
       errors.add(:translated_text, "Не может быть такой же как оригинальный текст")
     end
+  end
+
+  def downcase_cyrilic(text)
+    text.mb_chars.downcase.to_s
   end
 end
