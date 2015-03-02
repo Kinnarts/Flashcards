@@ -8,8 +8,10 @@ class Card < ActiveRecord::Base
     self.review_date = Time.now + 3.days    
   end
 
-  def check_translate(text)
-    self.update_attributes(review_date: Time.now + 3.days) if self.translated_text == text
+  def check_translation(text)
+    if translated_text == text
+      update_attributes(review_date: Time.now + 3.days)
+    end
   end
 
   private

@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
   def check
     card = Card.find(params[:card_id])
-    if card.check_translate(params[:q])
+    if card.check_translation(params[:q])
       flash[:notice] = "Поздравляем, все верно!"
     else
       flash[:error] = "Ответ неверный, может повезет в следующий раз..."
