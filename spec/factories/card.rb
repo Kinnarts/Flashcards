@@ -4,5 +4,6 @@ FactoryGirl.define do
     original_text Faker::Lorem.word
     translated_text Faker::Lorem.word
     review_date Time.now + 3.days
+    association :user
   end
 end

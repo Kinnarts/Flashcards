@@ -1,7 +1,7 @@
 require "rails_helper"
 describe "review card" do
   let!(:card) { create(:card, original_text: "review", translated_text: "перепросмотр", review_date: Time.now - 2.days) }
-  
+
   before(:each) do
     visit root_path
   end
