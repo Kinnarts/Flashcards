@@ -5,7 +5,7 @@ class Card < ActiveRecord::Base
   scope :for_review, -> { where("review_date <= ?", Time.now) }
 
   def increase_review_date
-    self.review_date = Time.now + 3.days    
+    self.review_date = Time.now + 3.days unless review_date
   end
 
   def check_translation(text)
