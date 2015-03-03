@@ -1,6 +1,5 @@
-require 'faker'
+require "faker"
 FactoryGirl.define do
-
   factory :card do
     original_text Faker::Lorem.word
     translated_text Faker::Lorem.word

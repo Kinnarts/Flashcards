@@ -1,6 +1,5 @@
-require 'rails_helper'
+require "rails_helper"
 describe "Card" do
-
   before(:all) do
     @card = create(:card)
   end
