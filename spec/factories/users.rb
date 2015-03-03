@@ -4,5 +4,4 @@ FactoryGirl.define do
     email Faker::Lorem.word
     password Faker::Lorem.word
   end
-
 end

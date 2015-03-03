@@ -1,8 +1,7 @@
 require "rails_helper"
 describe "Card management" do
-  before(:all) do
-    @card = create(:card)
-  end
+  let!(:card) { create(:card) }
+  let!(:user) { create(:user) }
 
   before(:each) do
     visit root_path
@@ -14,7 +13,7 @@ describe "Card management" do
 
   it "can create new card" do
     click_link "Добавить карточку"
-    create_card(@card.original_text, @card.translated_text)
+    create_card(card.original_text, card.translated_text)
     expect(page).to have_content "Карточка создана успешно"
   end
 
