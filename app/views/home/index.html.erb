@@ -1,9 +1,13 @@
 <h2>Карточка для повторения</h2>
-<p>Карточка №<%= @card.id %></p>
-<p>Оригинальный текст - <%= @card.original_text %></p>
-<%= form_tag check_path do %>
-  <%= label_tag(:q, "Введите перевод") %>
-  <%= text_field_tag :q %>
-  <%= hidden_field_tag :card_id, @card.id %></br>
-  <button>Проверить</button>
+ <% if @card %> 
+  <p>Карточка №<%= @card.id %></p>
+  <p>Оригинальный текст - <%= @card.original_text %></p>
+  <%= form_tag check_path do %>
+    <%= label_tag(:q, "Введите перевод") %>
+    <%= text_field_tag :q %>
+    <%= hidden_field_tag :card_id, @card.id %></br>
+    <button>Проверить</button>
+  <% end %>
+<% else %>
+  <p>К сожалению карточек для повторения нет</p>
 <% end %>
