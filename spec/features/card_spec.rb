@@ -28,4 +28,26 @@ describe "Card" do
     click_link "Редактировать"
     expect(page).to have_content "Введите новые данные"
   end
+  
+  context "review card" do
+    before(:each) do
+      Card.first.update_attributes(review_date: Time.now - 2.days)
+      click_link "Флешкарточкер"
+    end
+
+
+    it "wrong" do
+      fill_in "Введите перевод", with: "12345"
+      click_button "Проверить"
+      expect(page).to have_content "Ответ неверный, может повезет в следующий раз..."
+    end
+
+    it "succes" do
+      fill_in "Введите перевод", with: @card.translated_text
+      click_button "Проверить"
+      expect(page).to have_content "Поздравляем, все верно!"
+    end
+
+  end
+
 end
