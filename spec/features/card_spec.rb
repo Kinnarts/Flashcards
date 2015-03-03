@@ -35,7 +35,6 @@ describe "Card" do
       click_link "Флешкарточкер"
     end
 
-
     it "wrong" do
       fill_in "Введите перевод", with: "12345"
       click_button "Проверить"
@@ -47,7 +46,5 @@ describe "Card" do
       click_button "Проверить"
       expect(page).to have_content "Поздравляем, все верно!"
     end
-
   end
-
 end
