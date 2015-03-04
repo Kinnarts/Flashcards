@@ -3,7 +3,7 @@ class Card < ActiveRecord::Base
   validates :original_text, :translated_text, :user_id, presence: true
   validate :original_text_cannot_be_equal_translated_text
   belongs_to :user
-  scope :for_review, -> { where("review_date <= ?", Time.now) }
+  scope :for_review, -> (user) { where("review_date <= ?", Time.now).where("user_id = ?", user.id) }
 
   def increase_review_date
     self.review_date = Time.now + 3.days unless review_date

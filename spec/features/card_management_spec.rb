@@ -1,10 +1,10 @@
 require "rails_helper"
 describe "Card management" do
-  let!(:card) { create(:card) }
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, email: "go@further.always", password: "freedom123", password_confirmation: "freedom123") }
+  let!(:card) { create(:card, user: User.take) }
 
   before(:each) do
-    visit root_path
+    login("go@further.always", "freedom123")
   end
 
   it "root path" do

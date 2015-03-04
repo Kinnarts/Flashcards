@@ -1,9 +1,10 @@
 require "rails_helper"
 describe "review card" do
-  let!(:card) { create(:card, original_text: "review", translated_text: "перепросмотр", review_date: Time.now - 2.days) }
+  let!(:user) { create(:user, email: "go@further.always", password: "freedom123", password_confirmation: "freedom123") }
+  let!(:card) { create(:card, original_text: "review", translated_text: "перепросмотр", review_date: Time.now - 2.days, user: User.take) }
 
   before(:each) do
-    visit root_path
+    login("go@further.always", "freedom123")
   end
 
   it "wrong" do
