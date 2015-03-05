@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users, except: [:index]
   resources :user_sessions
   get 'login' => 'user_sessions#new', :as => :login
-  post 'logout' => 'user_sessions#destroy', :as => :logout
+  delete 'logout' => 'user_sessions#destroy', :as => :logout
   get 'signup' => 'users#new', :as => :signup
 
   root "home#index"
