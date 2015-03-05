@@ -1,0 +1,5 @@
+<h2>Пользователь: <%= current_user.email %></h2>
+<p>Общее количество карточек: <%= current_user.cards ? current_user.cards.count : "0" %></p>
+<p>Количество карточек для повторения: <%= current_user.cards.for_review ? current_user.cards.for_review.count : "0" %></p>
+<p><%= link_to 'Редактировать данные пользователя', edit_user_profiler_path(current_user) %></p>
+<p><%= link_to 'Удалить пользователя', user_path(current_user), method: :delete, data: { confirm: 'Вы уверены?' }  %></p>

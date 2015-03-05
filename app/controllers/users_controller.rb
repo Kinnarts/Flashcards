@@ -23,9 +23,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(card_params)
+    if @user.update(user_params)
       flash[:notice] = "Пользовательcкие данные изменены"
-      redirect_to user_path(@user)
+      redirect_to user_profiler_path(@user)
     else
       render :edit
     end

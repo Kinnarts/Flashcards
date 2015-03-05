@@ -1,3 +1,7 @@
 <h1>Новый пользователь</h1>
-
-<%= render 'form', user: @user %>
+<%= simple_form_for @user do |f| %>
+  <%= f.input :email, label: 'Адрес электронной почты' %>
+  <%= f.input :password, label: 'Пароль', placeholder: 'Не менее трех символов' %>
+  <%= f.input :password_confirmation, label: 'Подвердите пароль' %>
+  <%= f.button :submit %>
+<% end %>

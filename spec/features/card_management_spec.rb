@@ -29,7 +29,6 @@ describe "Card management" do
   end
 
   it "can edit only owner" do
-    visit edit_card_path(create(:card, user_id: -1))
-    expect(page).to have_content "Только для создателей карточки"
+    expect{ visit edit_card_path(create(:card, user_id: -1)) }.to raise_error(ActiveRecord::RecordNotFound)
   end
 end

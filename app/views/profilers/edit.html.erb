@@ -1,4 +1,5 @@
-<%= simple_form_for user do |f| %>
+<h1>Редактирование данных пользователя</h1>
+<%= simple_form_for current_user do |f| %>
   <%= f.input :email, label: 'Адрес электронной почты' %>
   <%= f.input :password, label: 'Пароль', placeholder: 'Не менее трех символов' %>
   <%= f.input :password_confirmation, label: 'Подвердите пароль' %>
