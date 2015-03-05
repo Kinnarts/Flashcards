@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :find_card, only: [:show, :edit, :update, :destroy]
+  before_action :find_card, :only_owner, only: [:show, :edit, :update, :destroy]
 
   def index
     @cards = current_user.cards.all
@@ -46,5 +46,12 @@ class CardsController < ApplicationController
 
   def card_params
     params.require(:card).permit(:original_text, :translated_text, :review_date, :user_id)
+  end
+
+  def only_owner
+    unless current_user == @card.user
+      flash[:error] = "Только для создателей карточки"
+      redirect_to login_path
+    end
   end
 end

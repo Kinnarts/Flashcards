@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :require_login, only: [:new, :create]
+  skip_before_action :require_login, only: [:new, :create]
   before_action :find_user, only: [:show, :edit, :update, :destroy]
 
   def show
@@ -37,11 +37,12 @@ class UsersController < ApplicationController
   end
 
   private
-    def find_user
-      @user = User.find(params[:id])
-    end
 
-    def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :authentications_attributes)
-    end
+  def find_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :authentications_attributes)
+  end
 end

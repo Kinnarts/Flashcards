@@ -1,5 +1,5 @@
 class OauthsController < ApplicationController
-  skip_before_filter :require_login
+  skip_before_action :require_login
 
   def oauth
     login_at(auth_params[:provider])
@@ -7,24 +7,22 @@ class OauthsController < ApplicationController
 
   def callback
     provider = auth_params[:provider]
-    if @user = login_from(provider)
-      flash[:notice] = "Вход выполнен с данными из #{provider.titleize}!"
-      redirect_to root_path
-    else
+    unless @user = login_from(provider)
       begin
         @user = create_from(provider)
         reset_session
         auto_login(@user)
-        flash[:notice] = "Вход выполнен с данными из #{provider.titleize}!"
-        redirect_to root_path
       rescue
         flash[:error] = "Вход с данными из #{provider.titleize} прошел неудачно!"
         redirect_to root_path
       end
     end
+    flash[:notice] = "Вход выполнен с данными из #{provider.titleize}!"
+    redirect_to root_path
   end
 
   private
+
   def auth_params
     params.permit(:code, :provider)
   end
