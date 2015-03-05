@@ -5,7 +5,7 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    if @user = login(login_params)
+    if @user = login(login_params[:email], login_params[:password])
       flash[:notice] = "Вы успешно вошли"
       redirect_back_or_to root_path
     else
@@ -23,6 +23,6 @@ class UserSessionsController < ApplicationController
   private
 
   def login_params
-    params.require(:user_session).permit(:email, :password)
+    params.permit(:email, :password)
   end
 end
