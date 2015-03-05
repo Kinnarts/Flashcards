@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :require_login
 
   private
-  
+
   def not_authenticated
     flash[:error] = "Пожалуйста, войдите в систему"
     redirect_to login_path
