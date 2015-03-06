@@ -2,9 +2,8 @@ Rails.application.routes.draw do
   post "oauth/callback" => "oauths#callback"
   get "oauth/callback" => "oauths#callback" # for use with Github, Facebook
   get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
-  resources :users, except: [:index] do
-    resource :profiler, only: [:show, :edit]
-  end
+  resources :users, except: [:index, :show, :edit, :update]
+  resource :profile, only: [:show, :edit, :update]
   resources :user_sessions
   get 'login' => 'user_sessions#new', :as => :login
   delete 'logout' => 'user_sessions#destroy', :as => :logout
