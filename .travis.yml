@@ -8,4 +8,5 @@ script:
 - bundle exec rake
 before_script:
 - cp config/database.yml.travis config/database.yml
+- cp config/secrets.yml.travis config/secrets.yml
 - psql -c 'create database flashcards_test' -U postgres
