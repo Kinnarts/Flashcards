@@ -34,6 +34,7 @@ class CardsController < ApplicationController
   end
 
   def destroy
+    @card.remove_photo!
     @card.destroy
     redirect_to cards_path
   end
@@ -45,6 +46,6 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:original_text, :translated_text, :review_date, :user_id)
+    params.require(:card).permit(:original_text, :translated_text, :review_date, :user_id, :photo, :remote_photo_url, :photo_cache)
   end
 end
