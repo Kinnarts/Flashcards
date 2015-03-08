@@ -5,7 +5,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
-  storage :fog
+  # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -22,7 +22,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process resize_to_fit: [360,360]
+  process resize_to_fit: [360, 360]
   #
   # def scale(width, height)
   #   # do something
