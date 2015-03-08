@@ -12,7 +12,7 @@ describe PhotoUploader do
     PhotoUploader.enable_processing = false
     @uploader.remove!
   end
-  context 'the small version' do
+  context "the small version" do
     it "should scale down a landscape image to fit within 360 by 360 pixels" do
       expect(@uploader).to be_no_larger_than(360, 360)
     end
