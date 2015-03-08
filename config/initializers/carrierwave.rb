@@ -12,7 +12,7 @@ else
       region: Rails.application.secrets.aws_region
     }
     config.storage = :fog
-    config.fog_directory = "flashcards-mkdev"
+    config.fog_directory = Rails.application.secrets.aws_bucket
     config.fog_public = false
     config.fog_attributes = { "Cache-Control" => "max-age=#{365.day.to_i}" }
   end

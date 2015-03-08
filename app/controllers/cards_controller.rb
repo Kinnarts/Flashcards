@@ -34,7 +34,6 @@ class CardsController < ApplicationController
   end
 
   def destroy
-    @card.remove_photo!
     @card.destroy
     redirect_to cards_path
   end
