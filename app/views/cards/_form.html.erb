@@ -1,5 +1,9 @@
-<%= simple_form_for card do |f| %>
+<%= simple_form_for card, html: { multipart: true } do |f| %>
   <%= f.input :original_text, label: 'Оригинальный текст' %>
   <%= f.input :translated_text, label: 'Перевод' %>
+  <%= image_tag @card.photo_url if @card.photo %>
+  <%= f.input :photo, as: :file, label: 'Добавьте картинку как файл...' %>
+  <%= f.input :photo_cache, as: :hidden %>
+  <%= f.input :remote_photo_url, label: 'или ссылкой на картинку' %>
   <%= f.button :submit %>
 <% end %>

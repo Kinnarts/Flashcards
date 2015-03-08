@@ -1,3 +1,4 @@
 <h2>Карточка номер <%= @card.id %> </h2>
 <p> Оригинальный текст: <%= @card.original_text  %></p>
-<p> Перевод: <%= @card.translated_text  %></p> 
+<p> Перевод: <%= @card.translated_text  %></p>
+<p> <%= image_tag @card.photo_url %></p>

@@ -4,6 +4,7 @@ class Card < ActiveRecord::Base
   validate :original_text_cannot_be_equal_translated_text
   belongs_to :user
   scope :for_review, -> { where("review_date <= ?", Time.now) }
+  mount_uploader :photo, PhotoUploader
 
   def increase_review_date
     self.review_date = Time.now + 3.days unless review_date
