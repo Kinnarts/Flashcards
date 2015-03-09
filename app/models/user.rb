@@ -4,10 +4,16 @@ class User < ActiveRecord::Base
   end
   has_many :cards
   has_many :authentications, dependent: :destroy
+  has_many :packs
   accepts_nested_attributes_for :authentications
 
-  validates :password, length: { minimum: 3 }
-  validates :password, confirmation: true
-  validates :password_confirmation, presence: true
+  validates :password, length: { minimum: 3 }, on: [:create, :update]
+  validates :password, confirmation: true, on: [:create, :update]
+  validates :password_confirmation, presence: true, on: [:create, :update]
   validates :email, uniqueness: true, presence: true
+
+  def set_current_pack(id)
+    update_attribute(:current_pack_id, id)
+    save(validate: false)
+  end
 end

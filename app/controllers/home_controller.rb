@@ -1,6 +1,10 @@
 class HomeController < ApplicationController
   def index
-    @card = current_user.cards.for_review.take
+    @card = if current_user.current_pack_id 
+      Pack.find(current_user.current_pack_id).cards.for_review.take
+    else
+      current_user.cards.for_review.take
+    end
   end
 
   def check

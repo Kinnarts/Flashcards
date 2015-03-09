@@ -18,6 +18,7 @@
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
               <li><%= link_to "Все карточки", cards_path %></li>
+              <li><%= link_to "Мои колоды", packs_path %></li>
               <li><%= link_to "Добавить карточку", new_card_path %></li>
               <li><%= link_to "Профиль", profile_path %></li>
               <li><%= link_to "Выйти", :logout, method: :delete %></li>

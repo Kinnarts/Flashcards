@@ -9,11 +9,12 @@ require "nokogiri"
 require "open-uri"
 
 u = User.create!(email: "go@further.always", password: "freedom123", password_confirmation: "freedom123")
+p = Pack.create!(name: "Default", user_id: u.id)
 
 doc = Nokogiri::HTML(open("http://en365.ru/top100.htm"))
 table = doc.css("table[width='60%']").css("td")
 3.step((table.size - 3), 3) do |i|
   original_text = table[i + 1].children.text
   translated_text = table[i + 2].children.text
-  Card.create(original_text: original_text, translated_text: translated_text, user_id: u.id)
+  Card.create(original_text: original_text, translated_text: translated_text, user_id: u.id, pack_id: p.id)
 end

@@ -1,7 +1,8 @@
 require "rails_helper"
 describe "review card" do
   let!(:user) { create(:user, email: "go@further.always", password: "freedom123", password_confirmation: "freedom123") }
-  let!(:card) { create(:card, original_text: "review", translated_text: "перепросмотр", review_date: Time.now - 2.days, user: User.take) }
+  let!(:pack) { create(:pack, user: User.take) }
+  let!(:card) { create(:card, original_text: "review", translated_text: "перепросмотр", review_date: Time.now - 2.days, user: User.take, pack: Pack.take) }
 
   before(:each) do
     login("go@further.always", "freedom123")
