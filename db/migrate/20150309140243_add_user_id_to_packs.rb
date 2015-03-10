@@ -1,5 +1,5 @@
 class AddUserIdToPacks < ActiveRecord::Migration
   def change
-      add_column :packs, :user_id, :integer
+    add_column :packs, :user_id, :integer
   end
 end

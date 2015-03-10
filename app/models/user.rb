@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true, presence: true
 
   def set_current_pack(id)
-    update_attribute(:current_pack_id, id)
-    save(validate: false)
+    update_column(:current_pack_id, id)
   end
 end

@@ -41,7 +41,7 @@ class PacksController < ApplicationController
   private
 
   def find_pack
-    @pack = Pack.find(params[:id])
+    @pack = current_user.packs.find(params[:id])
   end
 
   def pack_params

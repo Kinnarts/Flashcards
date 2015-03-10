@@ -3,5 +3,4 @@ FactoryGirl.define do
     name "MyPack"
     association :user
   end
-
 end

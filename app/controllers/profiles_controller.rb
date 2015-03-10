@@ -26,10 +26,6 @@ class ProfilesController < ApplicationController
   private
 
   def user_params
-    if params[:password].blank? && params[:password_confirmation].blank?
-      params.require(:user).permit(:current_pack_id)
-    else
-      params.require(:user).permit(:email, :password, :password_confirmation, :current_pack_id)
-    end
+    params.require(:user).permit(:email, :password, :password_confirmation, :current_pack_id)
   end
 end
