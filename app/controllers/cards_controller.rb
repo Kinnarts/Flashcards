@@ -9,6 +9,10 @@ class CardsController < ApplicationController
   end
 
   def new
+    if current_user.packs.count == 0
+      flash[:error] = "Сначала нужно создать хотя бы одну колоду для карточек"
+      redirect_to new_pack_path
+    end
     @card = current_user.cards.new
   end
 
