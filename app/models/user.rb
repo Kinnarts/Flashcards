@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :cards
   has_many :authentications, dependent: :destroy
   has_many :packs
-  belongs_to :current_pack, class_name: Pack
+  belongs_to :current_pack, class_name: "Pack"
   accepts_nested_attributes_for :authentications
 
   validates :password, length: { minimum: 3 }, on: [:create, :update]

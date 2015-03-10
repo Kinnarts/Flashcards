@@ -1,8 +1,8 @@
 <% if @packs.empty? %>
   <p>У Вас еще нет ни одной колоды</p>
 <% else %>
-  <% if current_user.current_pack_id %>
-    <p>Ваша колода для изучения - <%= Pack.find(current_user.current_pack_id).name %></p>
+  <% if current_user.current_pack %>
+    <p>Ваша колода для изучения - <%= current_user.current_pack.name %></p>
   <% else %>
     <p>У Вас не установлена колода для изучения</p>
   <% end %>
