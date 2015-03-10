@@ -124,7 +124,7 @@ Rails.application.config.sorcery.configure do |config|
   #
   config.facebook.key = "425742867592613"
   config.facebook.secret = "29a62859c9d6f63a92dc166d175a3aef"
-  config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
+  config.facebook.callback_url = "https://flashcards-kinnarts.herokuapp.com/oauth/callback?provider=facebook"
   config.facebook.user_info_mapping = {:email => "email"} #etc
   config.facebook.scope = "email,offline_access,user_hometown,user_interests,user_likes" #etc
   config.facebook.display = "popup"
