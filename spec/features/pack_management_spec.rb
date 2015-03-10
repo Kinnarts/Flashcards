@@ -31,6 +31,4 @@ describe "Pack management" do
     click_button "Save User"
     expect(page).to have_content "Колода для изучения изменена успешно"
   end
-
-
 end
