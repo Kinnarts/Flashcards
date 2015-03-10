@@ -1,8 +1,9 @@
 class Card < ActiveRecord::Base
   before_create  :increase_review_date
-  validates :original_text, :translated_text, :user_id, presence: true
+  validates :original_text, :translated_text, :user_id, :pack_id, presence: true
   validate :original_text_cannot_be_equal_translated_text
   belongs_to :user
+  belongs_to :pack
   scope :for_review, -> { where("review_date <= ?", Time.now) }
   mount_uploader :photo, PhotoUploader
 

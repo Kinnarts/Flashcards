@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Card do
   before :each do
-    @card = Card.new(original_text: "factory", translated_text: "фабрика", review_date: Time.now - 3.days, user_id: 1)
+    @card = Card.new(original_text: "factory", translated_text: "фабрика", review_date: Time.now - 3.days, user_id: 1, pack_id: 1)
   end
 
   it "has a valid translate" do

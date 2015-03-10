@@ -1,0 +1,33 @@
+<h2>Колода номер <%= @pack.id %> </h2>
+<p> Имя: <%= @pack.name  %></p>
+<% if @pack.cards %>
+  <table class="table table-bordered">
+    <caption>Список карточек</caption>
+    <thead>
+      <tr>
+        <td>Номер карточки</td>
+        <td>Оригинальный текст</td>
+        <td>Посмотреть перевод</td>
+        <td>Дата перепросмотра карточки</td>
+        <td>Действия</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pack.cards.each do |card| %>
+        <tr>
+          <td><%= card.id %></td>
+          <td><%= card.original_text %></td>
+          <td><%= link_to 'Посмотреть перевод', card_path(card) %></td>
+          <td><%= card.review_date.strftime("%d/%m/%Y") %></td>
+          <td>
+            <%= link_to 'Редактировать', edit_card_path(card) %>
+            |
+            <%= link_to 'Удалить', card_path(card), method: :delete, data: { confirm: 'Вы уверены?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>В колоде еще нет карт</p>
+<% end %>

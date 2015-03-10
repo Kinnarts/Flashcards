@@ -1,6 +1,7 @@
 <%= simple_form_for card, html: { multipart: true } do |f| %>
   <%= f.input :original_text, label: 'Оригинальный текст' %>
   <%= f.input :translated_text, label: 'Перевод' %>
+  <%= f.input :pack_id, collection: current_user.packs, label: 'Выберите колоду' %>
   <%= image_tag @card.photo_url if @card.photo %>
   <%= f.input :photo, as: :file, label: 'Добавьте картинку как файл...' %>
   <%= f.input :photo_cache, as: :hidden %>

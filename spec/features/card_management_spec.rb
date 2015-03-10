@@ -1,7 +1,8 @@
 require "rails_helper"
 describe "Card management" do
   let!(:user) { create(:user, email: "go@further.always", password: "freedom123", password_confirmation: "freedom123") }
-  let!(:card) { create(:card, user: User.take) }
+  let!(:pack) { create(:pack, user: User.take) }
+  let!(:card) { create(:card, user: User.take, pack: Pack.take) }
 
   before(:each) do
     login("go@further.always", "freedom123")
@@ -13,7 +14,7 @@ describe "Card management" do
 
   it "can create new card" do
     click_link "Добавить карточку"
-    create_card(card.original_text, card.translated_text)
+    create_card(card.original_text, card.translated_text, card.pack.name)
     expect(page).to have_content "Карточка создана успешно"
   end
 

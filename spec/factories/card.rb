@@ -5,5 +5,6 @@ FactoryGirl.define do
     translated_text Faker::Lorem.sentence(word_count = 1)
     review_date Time.now + 3.days
     association :user
+    association :pack
   end
 end

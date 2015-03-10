@@ -5,10 +5,19 @@ class ProfilesController < ApplicationController
   def edit
   end
 
+  def set_current_pack
+    if current_user.set_current_pack(user_params[:current_pack_id])
+      flash[:notice] = "Колода для изучения изменена успешно"
+    else
+      flash[:error] = "Не удалось изменить колоду для изучения"
+    end
+    redirect_back_or_to packs_path
+  end
+
   def update
-    if current_user.update(user_params)
+    if current_user.update_attributes!(user_params)
       flash[:notice] = "Пользовательcкие данные изменены"
-      redirect_to profile_path
+      redirect_back_or_to profile_path
     else
       render :edit
     end
@@ -17,6 +26,6 @@ class ProfilesController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :current_pack_id)
   end
 end

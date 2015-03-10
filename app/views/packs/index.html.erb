@@ -1,0 +1,41 @@
+<% if @packs.empty? %>
+  <p>У Вас еще нет ни одной колоды</p>
+<% else %>
+  <% if current_user.current_pack %>
+    <p>Ваша колода для изучения - <%= current_user.current_pack.name %></p>
+  <% else %>
+    <p>У Вас не установлена колода для изучения</p>
+  <% end %>
+  <%= simple_form_for :user, url: set_current_pack_path, method: :patch do |f| %>
+    <%= f.input :current_pack_id, collection: current_user.packs, label: 'Выберите колоду для изучения' %>
+    <%= f.button :submit %>
+  <% end %>
+
+
+  <table class="table table-bordered">
+    <caption>Список всех колод</caption>
+    <thead>
+      <tr>
+        <td>Номер колоды</td>
+        <td>Имя</td>
+        <td>Количество карточек</td>
+        <td>Действия</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @packs.each do |pack| %>
+        <tr>
+          <td><%= pack.id %></td>
+          <td><%= pack.name %></td>
+          <td><%= pack.cards ? (link_to pack.cards.count, pack_path(pack)) : "0" %></td>
+          <td>
+            <%= link_to 'Редактировать', edit_pack_path(pack) %>
+            |
+            <%= link_to 'Удалить', pack_path(pack), method: :delete, data: { confirm: 'Вы уверены?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<p><%= link_to 'Новая колода', new_pack_path, class: 'btn' %></p>
