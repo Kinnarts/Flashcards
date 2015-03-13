@@ -1,5 +1,5 @@
 class Card < ActiveRecord::Base
-  before_create  :initialize_review_date
+  before_create :initialize_review_date
   validates :original_text, :translated_text, :user_id, :pack_id, presence: true
   validate :original_text_cannot_be_equal_translated_text
   belongs_to :user
@@ -43,11 +43,10 @@ class Card < ActiveRecord::Base
       update_attributes(review_date: Time.now + 14.days)
     when 4
       update_attributes(review_date: Time.now + 1.month)
-    else 
+    else
       update_attributes(review_date: Time.now + 1.month)
     end
-    increment!(:success_count_id)
-    update_attributes(error_count_id: 0)
+    update_attributes(error_count_id: 0, success_count_id: success_count_id + 1)
   end
 
   def error_check
