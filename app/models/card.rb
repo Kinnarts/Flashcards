@@ -18,7 +18,7 @@ class Card < ActiveRecord::Base
   private
 
   def initialize_review_date
-    self.review_date = Time.now unless review_date
+    self.review_date ||= Time.now
   end
 
   def original_text_cannot_be_equal_translated_text
@@ -32,15 +32,15 @@ class Card < ActiveRecord::Base
   end
 
   def success_check
-    repeat_interval =  case success_count_id
-    when 0
-      Time.now + 12.hours
-    when 1
-      Time.now + 3.days
-    when 2
-      Time.now + 7.days
-    when 3
-      Time.now + 14.days
+    repeat_interval = case success_count_id
+      when 0
+        Time.now + 12.hours
+      when 1
+        Time.now + 3.days
+      when 2
+        Time.now + 7.days
+      when 3
+        Time.now + 14.days
     else
       Time.now + 1.month
     end
