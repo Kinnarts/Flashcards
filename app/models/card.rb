@@ -41,8 +41,8 @@ class Card < ActiveRecord::Base
         Time.now + 7.days
       when 3
         Time.now + 14.days
-    else
-      Time.now + 1.month
+      else
+        Time.now + 1.month
     end
     update_attributes(error_count_id: 0, success_count_id: success_count_id + 1, review_date: repeat_interval)
   end
