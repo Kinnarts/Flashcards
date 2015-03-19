@@ -32,27 +32,25 @@ class Card < ActiveRecord::Base
   end
 
   def success_check
-    case success_count_id
+    repeat_interval =  case success_count_id
     when 0
-      update_attributes(review_date: Time.now + 12.hours)
+      Time.now + 12.hours
     when 1
-      update_attributes(review_date: Time.now + 3.days)
+      Time.now + 3.days
     when 2
-      update_attributes(review_date: Time.now + 7.days)
+      Time.now + 7.days
     when 3
-      update_attributes(review_date: Time.now + 14.days)
-    when 4
-      update_attributes(review_date: Time.now + 1.month)
+      Time.now + 14.days
     else
-      update_attributes(review_date: Time.now + 1.month)
+      Time.now + 1.month
     end
-    update_attributes(error_count_id: 0, success_count_id: success_count_id + 1)
+    update_attributes(error_count_id: 0, success_count_id: success_count_id + 1, review_date: repeat_interval)
   end
 
   def error_check
     increment!(:error_count_id)
-    if error_count_id % 3 == 0
-      decrement!(:success_count_id) unless success_count_id == 0
+    if error_count_id % 3 == 0 && success_count_id != 0
+      decrement!(:success_count_id)
     end
   end
 end
